@@ -12,7 +12,7 @@ const Login = () => {
         <FormInput
           type="email"
           name="identifier"
-          label="email"
+          label="Email"
           defaultValue="test@test.com"
         />
         <FormInput

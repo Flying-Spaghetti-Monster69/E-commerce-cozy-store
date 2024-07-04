@@ -1,6 +1,7 @@
 import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import NavLinks from "./NavLinks";
 
 const NavBar = () => {
   return (
@@ -23,9 +24,9 @@ const NavBar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200"
+              className="rounded-box w-52 menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200"
             >
-              navlinks
+              <NavLinks />
             </ul>
           </div>
         </div>

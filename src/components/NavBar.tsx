@@ -2,8 +2,13 @@ import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
+import { useState } from "react";
 
 const NavBar = () => {
+  const [theme, setTheme] = useState(false);
+  const handleTheme = () => {
+    setTheme(!theme);
+  };
   return (
     <nav className="bg-base-200">
       <div className="navbar align-element">
@@ -34,6 +39,11 @@ const NavBar = () => {
           <ul className="menu menu-horizontal">nav links</ul>
         </div>
         <div className="navbar-end">
+          <label className="swap swap-rotate">
+            <input type="checkbox" onChange={handleTheme} />
+            <BsSunFill className="swap-on h-4 w-4" />
+            <BsMoonFill className="swap-off h-4 w-4" />
+          </label>
           <NavLink to="/cart" className="btn btn-ghost btn-circle ml-4 btn-md">
             <div className="indicator">
               <BsCart3 className="h-6 w-6" />

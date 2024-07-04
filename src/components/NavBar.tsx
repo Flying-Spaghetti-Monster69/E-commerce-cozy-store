@@ -2,13 +2,30 @@ import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const themes = {
+  light: "nord",
+  dark: "night",
+};
+
+const getThemeFromLocalStorage = () => {
+  return localStorage.getItem("theme") || themes.light;
+};
 
 const NavBar = () => {
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState(getThemeFromLocalStorage());
   const handleTheme = () => {
-    setTheme(!theme);
+    const { light, dark } = themes;
+    const newTheme = theme === light ? dark : light;
+    setTheme(newTheme);
   };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <nav className="bg-base-200">
       <div className="navbar align-element">
@@ -36,7 +53,9 @@ const NavBar = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal">nav links</ul>
+          <ul className="menu menu-horizontal">
+            <NavLinks styles="mx-1" />
+          </ul>
         </div>
         <div className="navbar-end">
           <label className="swap swap-rotate">

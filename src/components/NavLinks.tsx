@@ -9,14 +9,14 @@ const links = [
   { id: 6, url: "orders", text: "orders" },
 ];
 
-const NavLinks = () => {
+const NavLinks = ({ styles }: { styles?: string }) => {
   return (
     <>
       {links.map((link) => {
         const { id, url, text } = link;
         return (
           <li key={id}>
-            <NavLink className="capitalize" to={url}>
+            <NavLink className={`capitalize ${styles}`} to={url}>
               {text}
             </NavLink>
           </li>

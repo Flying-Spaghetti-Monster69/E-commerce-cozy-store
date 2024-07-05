@@ -10,4 +10,8 @@
     aspect-ratio: 960/300;
     @apply w-full bg-no-repeat bg-center bg-cover;
   }
+
+  .pause {
+    animation-play-state: paused;
+  }
 }

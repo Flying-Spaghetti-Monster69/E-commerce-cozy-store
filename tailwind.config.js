@@ -26,6 +26,9 @@ export default {
           ".waves-svg": {
             "background-image": "url('./src/assets/layered-waves-light.svg')",
           },
+          ".background-cards": {
+            "background-color": "#eceff4",
+          },
         },
       },
       {
@@ -36,6 +39,9 @@ export default {
           },
           ".waves-svg": {
             "background-image": "url('./src/assets/layered-waves-dark.svg')",
+          },
+          ".background-cards": {
+            "background-color": "#c8cbd0",
           },
         },
       },

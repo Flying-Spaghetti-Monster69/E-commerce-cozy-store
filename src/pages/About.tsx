@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <>
+    <section className="align-element py-20">
       <div className="flex flex-wrap gap-2 sm:gap-x-6 items-center justify-center">
         <h1 className="text-4xl font-bold leading-none tracking-tight sm:text-text-6xl">
           We adore
@@ -30,7 +30,7 @@ const About = () => {
         aromatherapy diffusers, we have everything you need to transform your
         space into a haven of relaxation.
       </p>
-    </>
+    </section>
   );
 };
 export default About;

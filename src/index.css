@@ -6,4 +6,8 @@
   .align-element {
     @apply mx-auto max-w-6xl px-8;
   }
+  .spacer {
+    aspect-ratio: 960/300;
+    @apply w-full bg-no-repeat bg-center bg-cover;
+  }
 }

@@ -15,6 +15,9 @@ export default {
           ".highlighted-text": {
             color: "#4565a2",
           },
+          ".waves-svg": {
+            "background-image": "url('./src/assets/layered-waves-light.svg')",
+          },
         },
       },
       {
@@ -22,6 +25,9 @@ export default {
           ...require("daisyui/src/theming/themes")["night"],
           ".highlighted-text": {
             color: "#818cf8",
+          },
+          ".waves-svg": {
+            "background-image": "url('./src/assets/layered-waves-dark.svg')",
           },
         },
       },

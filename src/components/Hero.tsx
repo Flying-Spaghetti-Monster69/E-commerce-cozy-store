@@ -23,7 +23,7 @@ const Hero = () => {
           and faster with streamlined checkout, saved lists, and 24/7 support.
         </p>
         <div className="mt-6">
-          <Link to="/products" className="btn capitalize btn-primary">
+          <Link to="/products" className="btn capitalize btn-primary ">
             our products
           </Link>
         </div>

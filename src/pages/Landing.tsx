@@ -1,9 +1,13 @@
-import { AssociatesSlider, Hero } from "../components";
+import { AssociatesSlider, FeaturedProducts, Hero } from "../components";
+import { customFetch } from "../utils";
+import { type Product } from "../types";
 
-const url = "/products";
+const url = "/products?featured=true";
 
-export const loader = () => {
-  return null;
+export const loader = async () => {
+  const response = await customFetch(url);
+  const featuredProducts: Product[] = response.data.data;
+  return { featuredProducts };
 };
 
 const Landing = () => {
@@ -16,11 +20,12 @@ const Landing = () => {
       <div className=" py-20 bg-neutral mt-[-4.7%]">
         <section className="align-element">
           <div className="flex flex-col w-full items-center">
-            <h1 className="text-neutral-content mb-4 font-bold text-3xl">
-              Associates:
+            <h1 className="text-neutral-content mb-8 font-bold text-4xl">
+              Associates <span className="text-sm">(not really...)</span>
             </h1>
             <AssociatesSlider />
           </div>
+          <FeaturedProducts />
         </section>
       </div>
     </>

@@ -3,6 +3,8 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { useEffect, useState } from "react";
+import logo from "../assets/logo-no-background-no-slogan.png";
+import { useStoreTheme } from "../stores";
 
 const themes = {
   light: "nord",
@@ -14,7 +16,10 @@ const getThemeFromLocalStorage = () => {
 };
 
 const NavBar = () => {
+  const { theme: storeTheme, setStoreTheme } = useStoreTheme();
   const [theme, setTheme] = useState(getThemeFromLocalStorage());
+  console.log(storeTheme);
+
   const handleTheme = () => {
     const { light, dark } = themes;
     const newTheme = theme === light ? dark : light;
@@ -22,6 +27,7 @@ const NavBar = () => {
   };
 
   useEffect(() => {
+    setStoreTheme(theme);
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
@@ -34,11 +40,7 @@ const NavBar = () => {
             to="/"
             className="hidden lg:flex h-14 text-3xl btn btn-ghost items-center"
           >
-            <img
-              src="src\assets\logo-no-background-no-slogan.png"
-              alt="C"
-              className="h-full w-full"
-            />
+            <img src={logo} alt="C" className="h-full w-full" />
           </NavLink>
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

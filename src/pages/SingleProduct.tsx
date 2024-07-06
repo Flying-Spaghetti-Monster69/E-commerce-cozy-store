@@ -6,7 +6,8 @@ import { Product } from "../types";
 
 export const loader = async ({ params }: { params: { id: string } }) => {
   const response = await customFetch(`/products/${params.id}`);
-  return { product: response.data.data };
+  const product = response.data.data;
+  return { product };
 };
 
 const SingleProduct = () => {

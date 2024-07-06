@@ -1,6 +1,9 @@
 import { AssociatesSlider, FeaturedProducts, Hero } from "../components";
 import { customFetch } from "../utils";
 import { type Product } from "../types";
+import darkWaves from "../assets/layered-waves-dark.svg";
+import lightWaves from "../assets/layered-waves-light.svg";
+import { useStoreTheme } from "../stores";
 
 const url = "/products?featured=true";
 
@@ -11,12 +14,17 @@ export const loader = async () => {
 };
 
 const Landing = () => {
+  const { theme } = useStoreTheme();
   return (
     <>
       <section className="align-element pt-20">
         <Hero />
       </section>
-      <div className="spacer waves-svg relative z-[-1] overflow-hidden translate-y-[-15%]"></div>
+      <div
+        className={`spacer relative ${
+          theme === "nord" ? "light-waves" : "dark-waves"
+        } z-[-1] overflow-hidden translate-y-[-15%]`}
+      ></div>
       <div className=" py-20 bg-neutral mt-[-4.7%]">
         <section className="align-element">
           <div className="flex flex-col w-full items-center">

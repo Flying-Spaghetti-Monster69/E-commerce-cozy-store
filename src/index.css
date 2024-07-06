@@ -11,6 +11,13 @@
     @apply w-full bg-no-repeat bg-center bg-cover;
   }
 
+  .dark-waves {
+    background-image: url("./assets/layered-waves-dark.svg");
+  }
+  .light-waves {
+    background-image: url("./assets/layered-waves-light.svg");
+  }
+
   .pause {
     animation-play-state: paused;
   }

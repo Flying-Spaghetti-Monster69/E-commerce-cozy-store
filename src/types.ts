@@ -17,3 +17,14 @@ export interface Product {
   id: number;
   attributes: ProductAttributes;
 }
+
+export interface Meta {
+  categories: string[];
+  companies: string[];
+  pagination: {
+    page: number;
+    pageCount: number;
+    pageSize: number;
+    total: number;
+  };
+}

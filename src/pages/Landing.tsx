@@ -1,10 +1,7 @@
 import { AssociatesSlider, FeaturedProducts, Hero } from "../components";
 import { customFetch } from "../utils";
 import { type Product } from "../types";
-import darkWaves from "../assets/layered-waves-dark.svg";
-import lightWaves from "../assets/layered-waves-light.svg";
 import { useStoreTheme } from "../stores";
-
 const url = "/products?featured=true";
 
 export const loader = async () => {

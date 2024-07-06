@@ -23,9 +23,7 @@ export default {
           ".highlighted-text": {
             color: "#4565a2",
           },
-          ".waves-svg": {
-            "background-image": "url('./src/assets/layered-waves-light.svg')",
-          },
+
           ".background-cards": {
             "background-color": "#eceff4",
           },
@@ -37,9 +35,7 @@ export default {
           ".highlighted-text": {
             color: "#818cf8",
           },
-          ".waves-svg": {
-            "background-image": "url('./src/assets/layered-waves-dark.svg')",
-          },
+
           ".background-cards": {
             "background-color": "#c8cbd0",
           },

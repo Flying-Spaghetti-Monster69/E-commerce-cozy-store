@@ -7,3 +7,4 @@ export { default as ErrorElement } from "./ErrorElement";
 export { default as AssociatesSlider } from "./AssociatesSlider";
 export { default as FeaturedProducts } from "./FeaturedProducts";
 export { default as SectionTitle } from "./SectionTitle";
+export { default as Loading } from "./Loading";

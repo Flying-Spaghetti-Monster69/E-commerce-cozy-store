@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { useEffect, useState } from "react";
 import logo from "../assets/logo-no-background-no-slogan.png";
-import { useThemeStore } from "../stores";
+import { useCartStore, useThemeStore } from "../stores";
 
 const themes = {
   light: "nord",
@@ -17,6 +17,7 @@ const getThemeFromLocalStorage = () => {
 
 const NavBar = () => {
   const { setStoreTheme } = useThemeStore();
+  const { numItemsInCart } = useCartStore();
   const [theme, setTheme] = useState(getThemeFromLocalStorage());
 
   const handleTheme = () => {
@@ -68,7 +69,7 @@ const NavBar = () => {
             <div className="indicator">
               <BsCart3 className="h-6 w-6" />
               <span className="badge badge-sm badge-primary indicator-item">
-                0
+                {numItemsInCart}
               </span>
             </div>
           </NavLink>

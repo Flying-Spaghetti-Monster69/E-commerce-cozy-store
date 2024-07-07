@@ -20,6 +20,8 @@ import { ErrorElement } from "./components";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as SingleProductLoader } from "./pages/SingleProduct";
 import { loader as productsLoader } from "./pages/Products";
+import { useCartStore } from "./stores";
+import { useEffect } from "react";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +78,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const { getItemsFromLocalStorage } = useCartStore();
+  useEffect(() => {
+    getItemsFromLocalStorage();
+  }, []);
+
   return (
     <>
       <RouterProvider router={router} />

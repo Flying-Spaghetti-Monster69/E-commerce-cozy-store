@@ -48,3 +48,12 @@ export interface Params {
   price: string;
   order: string;
 }
+
+export type cart = {
+  cartItems: cartProduct[];
+  numItemsInCart: number;
+  cartTotal: number;
+  shipping: number;
+  tax: number;
+  orderTotal: number;
+};

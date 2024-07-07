@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 import { cartProduct, Product } from "../types";
 import { useCartStore } from "../stores";
+import { toast } from "react-toastify";
 
 export const loader = async ({ params }: { params: { id: string } }) => {
   const response = await customFetch(`/products/${params.id}`);
@@ -41,6 +42,7 @@ const SingleProduct = () => {
 
   const addToCart = () => {
     addItem(cartProduct);
+    toast.success("item added successfully");
   };
 
   return (

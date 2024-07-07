@@ -5,7 +5,7 @@ type themeStore = {
   setStoreTheme: (theme: string) => void;
 };
 
-export const useStoreTheme = create<themeStore>((set) => ({
+export const useThemeStore = create<themeStore>((set) => ({
   theme: "nord",
   setStoreTheme: (theme) => set({ theme }),
 }));

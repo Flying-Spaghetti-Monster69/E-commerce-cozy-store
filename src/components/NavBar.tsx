@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { useEffect, useState } from "react";
 import logo from "../assets/logo-no-background-no-slogan.png";
-import { useStoreTheme } from "../stores";
+import { useThemeStore } from "../stores";
 
 const themes = {
   light: "nord",
@@ -16,9 +16,8 @@ const getThemeFromLocalStorage = () => {
 };
 
 const NavBar = () => {
-  const { theme: storeTheme, setStoreTheme } = useStoreTheme();
+  const { setStoreTheme } = useThemeStore();
   const [theme, setTheme] = useState(getThemeFromLocalStorage());
-  console.log(storeTheme);
 
   const handleTheme = () => {
     const { light, dark } = themes;

@@ -55,8 +55,6 @@ const ProductsContainer = () => {
           <ProductsList />
         )}
       </div>
-      <ProductsGrid />
-      <ProductsList />
     </>
   );
 };

@@ -29,6 +29,17 @@ export interface Meta {
   };
 }
 
+export interface cartProduct {
+  CartID: string;
+  productID: number;
+  image: string;
+  title: string;
+  price: string;
+  company: string;
+  productColor: string;
+  amount: number;
+}
+
 export interface Params {
   search: string;
   company: string;

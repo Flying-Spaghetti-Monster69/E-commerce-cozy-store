@@ -2,7 +2,8 @@ import { useLoaderData } from "react-router-dom";
 import { formatPrice, customFetch } from "../utils";
 import { Link } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
-import { Product } from "../types";
+import { cartProduct, Product } from "../types";
+import { useCartStore } from "../stores";
 
 export const loader = async ({ params }: { params: { id: string } }) => {
   const response = await customFetch(`/products/${params.id}`);
@@ -15,13 +16,32 @@ const SingleProduct = () => {
     product: Product;
   };
 
+  const { addItem } = useCartStore();
+
   const { image, title, price, description, colors, company } =
     product.attributes;
   const dollarsAmount = formatPrice(price);
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
 
-  const handleAmount = (e: ChangeEvent<HTMLSelectElement>) => {};
+  const handleAmount = (e: ChangeEvent<HTMLSelectElement>) => {
+    setAmount(parseInt(e.target.value));
+  };
+
+  const cartProduct: cartProduct = {
+    CartID: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    company,
+    productColor,
+    amount,
+  };
+
+  const addToCart = () => {
+    addItem(cartProduct);
+  };
 
   return (
     <section className="align-element pt-20">
@@ -94,7 +114,7 @@ const SingleProduct = () => {
           <div className="my-10">
             <button
               className="btn btn-secondary uppercase btn-md"
-              onClick={() => console.log("add to bag")}
+              onClick={() => addToCart()}
             >
               add to bag
             </button>

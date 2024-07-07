@@ -7,7 +7,7 @@ const ProductsList = () => {
   };
 
   return (
-    <div className="mt-3 grid gap-y-8">
+    <div className="mt-3 mb-12 grid gap-y-8">
       {products.map((product: Product) => {
         const { title, price, image, company } = product.attributes;
         const dollarsAmount = price;

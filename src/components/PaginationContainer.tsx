@@ -21,10 +21,10 @@ const PaginationContainer = () => {
   }
 
   return (
-    <div className="my-16 flex justify-end">
+    <div className="mb-16 flex justify-center sm:justify-end">
       <div className="join">
         <button
-          className="btn btn-xs sm:btn-md join-item"
+          className="btn btn-md join-item"
           onClick={() => handlePageChange((page - 1).toString())}
           disabled={page === 1 ? true : false}
         >
@@ -34,7 +34,7 @@ const PaginationContainer = () => {
           return (
             <button
               key={pageNumber}
-              className={`btn btn-xs sm:btn-md border-none join-item ${
+              className={`btn btn-md border-none join-item ${
                 pageNumber === page ? "bg-base-300 border-base-300" : ""
               }`}
               onClick={() => handlePageChange(pageNumber.toString())}
@@ -44,7 +44,7 @@ const PaginationContainer = () => {
           );
         })}
         <button
-          className="btn btn-xs sm:btn-md join-item"
+          className="btn btn-md join-item"
           onClick={() => handlePageChange((page + 1).toString())}
           disabled={page === pageCount ? true : false}
         >

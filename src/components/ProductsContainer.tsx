@@ -46,7 +46,7 @@ const ProductsContainer = () => {
       {/*PRODUCTS */}
       <div>
         {totalProducts === 0 ? (
-          <h5 className="text-2xl mt-16">
+          <h5 className="text-2xl my-16">
             Sorry, no products matched your search. Try changing the values.
           </h5>
         ) : layout === "grid" ? (

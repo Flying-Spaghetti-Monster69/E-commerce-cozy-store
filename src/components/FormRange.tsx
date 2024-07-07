@@ -5,11 +5,12 @@ interface Props {
   label: string;
   name: string;
   size?: string;
+  defaultPrice?: string;
 }
-const FormRange = ({ label, size, name }: Props) => {
+const FormRange = ({ label, size, name, defaultPrice }: Props) => {
   const step = 1000;
   const maxPrice = "100000";
-  const [selectedPrice, setSelectedPrice] = useState(maxPrice);
+  const [selectedPrice, setSelectedPrice] = useState(defaultPrice || maxPrice);
   return (
     <div className="form-control">
       <label htmlFor={name} className="label cursor-pointer">

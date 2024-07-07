@@ -28,3 +28,12 @@ export interface Meta {
     total: number;
   };
 }
+
+export interface Params {
+  search: string;
+  company: string;
+  category: string;
+  shipping: string;
+  price: string;
+  order: string;
+}

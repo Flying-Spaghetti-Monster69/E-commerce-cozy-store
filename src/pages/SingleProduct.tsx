@@ -5,6 +5,7 @@ import { ChangeEvent, useState } from "react";
 import { cartProduct, Product } from "../types";
 import { useCartStore } from "../stores";
 import { toast } from "react-toastify";
+import { GenerateAmountOptions } from "../components/GenerateAmountOptions";
 
 export const loader = async ({ params }: { params: { id: string } }) => {
   const response = await customFetch(`/products/${params.id}`);
@@ -106,11 +107,7 @@ const SingleProduct = () => {
               value={amount}
               onChange={handleAmount}
             >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
+              <GenerateAmountOptions number={10} />
             </select>
           </div>
           <div className="my-10">

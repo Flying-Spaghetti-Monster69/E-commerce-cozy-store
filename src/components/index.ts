@@ -8,3 +8,5 @@ export { default as AssociatesSlider } from "./AssociatesSlider";
 export { default as FeaturedProducts } from "./FeaturedProducts";
 export { default as SectionTitle } from "./SectionTitle";
 export { default as Loading } from "./Loading";
+export { default as CartTotals } from "./CartTotals";
+export { default as CartItemsList } from "./CartItemsList";

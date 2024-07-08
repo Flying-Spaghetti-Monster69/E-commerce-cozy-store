@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useUserStore } from "../stores/userStore";
 
 const links = [
   { id: 1, url: "/", text: "home" },
@@ -10,10 +11,14 @@ const links = [
 ];
 
 const NavLinks = ({ styles }: { styles?: string }) => {
+  const { user } = useUserStore();
   return (
     <>
       {links.map((link) => {
         const { id, url, text } = link;
+        if ((url === "checkout" || url === "orders") && !user) {
+          return null;
+        }
         return (
           <li key={id}>
             <NavLink className={`capitalize ${styles}`} to={url}>

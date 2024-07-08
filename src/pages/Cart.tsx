@@ -1,10 +1,10 @@
 import { CartItemsList, SectionTitle, CartTotals } from "../components";
 import { Link } from "react-router-dom";
 import { useCartStore } from "../stores/cartStore";
+import { useUserStore } from "../stores/userStore";
 
 const Cart = () => {
-  // temp
-  const user = null;
+  const { user } = useUserStore();
   const { numItemsInCart } = useCartStore();
 
   if (!numItemsInCart) {

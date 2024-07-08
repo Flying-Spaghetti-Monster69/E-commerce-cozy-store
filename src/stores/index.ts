@@ -96,12 +96,14 @@ export const useCartStore = create<cartStore>((set, get) => ({
         numItemsInCart:
           state.numItemsInCart + (amount - currentItems[product].amount),
         cartTotal:
-          state.cartTotal -
+          state.cartTotal +
           Number(currentItems[product].price) *
             (amount - currentItems[product].amount),
       }));
+      currentItems[product].amount = amount;
+      set({ cartItems: currentItems });
+      get().calculateTotals();
     }
-    get().calculateTotals();
   },
   getItemsFromLocalStorage: () => {
     const cart = localStorage.getItem(LOCAL_STORAGE_CART);

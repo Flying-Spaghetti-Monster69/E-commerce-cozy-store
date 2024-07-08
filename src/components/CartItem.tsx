@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+import { useCartStore } from "../stores";
 import { cartProduct } from "../types";
 import { formatPrice } from "../utils";
 import { GenerateAmountOptions } from "./GenerateAmountOptions";
@@ -11,6 +13,16 @@ const CartItem = ({
   company,
   productColor,
 }: cartProduct) => {
+  const { removeItem, editItem } = useCartStore();
+
+  const removeItemFromCart = () => {
+    removeItem(CartID);
+  };
+
+  const handleAmount = (e: ChangeEvent<HTMLSelectElement>) => {
+    editItem(CartID, parseInt(e.target.value));
+  };
+
   return (
     <article
       key={CartID}
@@ -34,7 +46,7 @@ const CartItem = ({
           ></span>
         </p>
       </div>
-      <div className="sm:ml-24 ">
+      <div className="sm:ml-12 ">
         <div className="form-control max-w-xs">
           <label htmlFor="amount" className="label p-0">
             <span className="label-text">Amount</span>
@@ -43,6 +55,8 @@ const CartItem = ({
             name="amount"
             id="amount"
             className="select select-xs select-bordered"
+            onChange={handleAmount}
+            value={amount}
           >
             <GenerateAmountOptions number={amount + 5} />
           </select>
@@ -50,6 +64,7 @@ const CartItem = ({
         <button
           type="button"
           className="mt-2 link link-primary link-hover text-sm"
+          onClick={removeItemFromCart}
         >
           remove
         </button>

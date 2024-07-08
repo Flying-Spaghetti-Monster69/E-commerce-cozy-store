@@ -1,4 +1,4 @@
-import { useCartStore } from "../stores";
+import { useCartStore } from "../stores/cartStore";
 import { formatPrice } from "../utils";
 
 const CartTotals = () => {

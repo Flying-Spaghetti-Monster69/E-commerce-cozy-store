@@ -1,7 +1,7 @@
 import { AssociatesSlider, FeaturedProducts, Hero } from "../components";
 import { customFetch } from "../utils";
 import { type Product } from "../types";
-import { useThemeStore } from "../stores";
+import { useUserStore } from "../stores/userStore";
 const url = "/products?featured=true";
 
 export const loader = async () => {
@@ -11,7 +11,7 @@ export const loader = async () => {
 };
 
 const Landing = () => {
-  const { theme } = useThemeStore();
+  const { theme } = useUserStore();
   return (
     <>
       <section className="align-element pt-20">

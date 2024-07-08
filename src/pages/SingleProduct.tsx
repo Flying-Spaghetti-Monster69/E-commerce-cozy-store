@@ -3,7 +3,7 @@ import { formatPrice, customFetch } from "../utils";
 import { Link } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 import { cartProduct, Product } from "../types";
-import { useCartStore } from "../stores";
+import { useCartStore } from "../stores/cartStore";
 import { toast } from "react-toastify";
 import { GenerateAmountOptions } from "../components/GenerateAmountOptions";
 

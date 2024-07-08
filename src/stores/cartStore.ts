@@ -3,11 +3,6 @@ import { cartProduct, type cart } from "../types";
 
 const LOCAL_STORAGE_CART = "cart";
 
-interface themeStore {
-  theme: string;
-  setStoreTheme: (theme: string) => void;
-}
-
 interface cartStore extends cart {
   addItem: (cartItemToAdd: cartProduct) => void;
   clearCart: () => void;
@@ -16,11 +11,6 @@ interface cartStore extends cart {
   getItemsFromLocalStorage: () => void;
   calculateTotals: () => void;
 }
-
-export const useThemeStore = create<themeStore>((set) => ({
-  theme: "nord",
-  setStoreTheme: (theme) => set({ theme }),
-}));
 
 export const useCartStore = create<cartStore>((set, get) => ({
   cartItems: [],

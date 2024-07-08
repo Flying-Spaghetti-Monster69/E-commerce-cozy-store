@@ -1,6 +1,6 @@
 import { CartItemsList, SectionTitle, CartTotals } from "../components";
 import { Link } from "react-router-dom";
-import { useCartStore } from "../stores";
+import { useCartStore } from "../stores/cartStore";
 
 const Cart = () => {
   // temp

@@ -1,4 +1,4 @@
-import { useCartStore } from "../stores";
+import { useCartStore } from "../stores/cartStore";
 import CartItem from "./CartItem";
 
 const CartItemsList = () => {

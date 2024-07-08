@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { useCartStore } from "../stores";
+import { useCartStore } from "../stores/cartStore";
 import { cartProduct } from "../types";
 import { formatPrice } from "../utils";
 import { GenerateAmountOptions } from "./GenerateAmountOptions";

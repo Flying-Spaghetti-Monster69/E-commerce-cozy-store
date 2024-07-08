@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { useEffect, useState } from "react";
 import logo from "../assets/logo-no-background-no-slogan.png";
-import { useCartStore, useThemeStore } from "../stores";
+import { useCartStore } from "../stores/cartStore";
+import { useUserStore } from "../stores/userStore";
 
 const themes = {
   light: "nord",
@@ -16,7 +17,7 @@ const getThemeFromLocalStorage = () => {
 };
 
 const NavBar = () => {
-  const { setStoreTheme } = useThemeStore();
+  const { setUserTheme } = useUserStore();
   const { numItemsInCart } = useCartStore();
   const [theme, setTheme] = useState(getThemeFromLocalStorage());
 
@@ -27,7 +28,7 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    setStoreTheme(theme);
+    setUserTheme(theme);
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [theme]);

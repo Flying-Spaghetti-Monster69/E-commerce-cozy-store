@@ -1,6 +1,6 @@
 import { AssociatesSlider, FeaturedProducts, Hero } from "../components";
 import { customFetch } from "../utils";
-import { type Product } from "../types";
+import { themes, type Product } from "../types";
 import { useUserStore } from "../stores/userStore";
 const url = "/products?featured=true";
 
@@ -19,7 +19,7 @@ const Landing = () => {
       </section>
       <div
         className={`spacer relative ${
-          theme === "nord" ? "light-waves" : "dark-waves"
+          theme === themes.light ? "light-waves" : "dark-waves"
         } z-[-1] overflow-hidden translate-y-[-15%]`}
       ></div>
       <div className=" py-20 bg-neutral mt-[-4.7%]">

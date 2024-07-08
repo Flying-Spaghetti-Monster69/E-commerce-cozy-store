@@ -57,3 +57,8 @@ export type cart = {
   tax: number;
   orderTotal: number;
 };
+
+export enum themes {
+  light = "nord",
+  dark = "night",
+}

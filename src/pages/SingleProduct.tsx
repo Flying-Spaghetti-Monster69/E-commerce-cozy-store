@@ -9,7 +9,7 @@ import { GenerateAmountOptions } from "../components/GenerateAmountOptions";
 
 export const loader = async ({ params }: { params: { id: string } }) => {
   const response = await customFetch(`/products/${params.id}`);
-  const product = response.data.data;
+  const product: Product = response.data.data;
   return { product };
 };
 

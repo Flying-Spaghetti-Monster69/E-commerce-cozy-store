@@ -1,6 +1,7 @@
 import Filters from "../components/Filters";
 import PaginationContainer from "../components/PaginationContainer";
 import ProductsContainer from "../components/ProductsContainer";
+import { Meta, Product } from "../types";
 import { customFetch } from "../utils";
 
 const url = "/products";
@@ -18,8 +19,8 @@ export const loader = async ({ request }: Props) => {
   const response = await customFetch(url, {
     params,
   });
-  const products = response.data.data;
-  const meta = response.data.meta;
+  const products: Product[] = response.data.data;
+  const meta: Meta = response.data.meta;
   return { products, meta, params };
 };
 

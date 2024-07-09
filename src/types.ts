@@ -64,17 +64,20 @@ export enum themes {
 }
 
 export interface userStore {
-  user: { user: { username: string } } | loggedUser | null;
+  user: { username: string } | loggedUser | null;
   theme: themes;
   toggleUserStore: () => void;
   logoutUser: () => void;
 }
 
-export interface loggedUser {
+export interface loggedUserData {
   jwt: string;
   user: User;
 }
 
+export interface loggedUser extends User {
+  token: string;
+}
 export interface User {
   id: number;
   username: string;

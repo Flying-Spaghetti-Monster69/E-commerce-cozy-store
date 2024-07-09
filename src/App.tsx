@@ -1,4 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { useCartStore } from "./stores/cartStore";
+import { useEffect } from "react";
 
 import {
   About,
@@ -20,8 +22,9 @@ import { ErrorElement } from "./components";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as SingleProductLoader } from "./pages/SingleProduct";
 import { loader as productsLoader } from "./pages/Products";
-import { useCartStore } from "./stores/cartStore";
-import { useEffect } from "react";
+
+// actions
+import { action as registerAction } from "./pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +77,7 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register />,
     errorElement: <Error />,
+    action: registerAction,
   },
 ]);
 

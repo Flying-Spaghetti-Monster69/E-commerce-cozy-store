@@ -1,15 +1,8 @@
 import { create } from "zustand";
-import { themes } from "../types";
+import { loggedUser, themes, userStore } from "../types";
 
 const LOCAL_STORAGE_THEME = "theme";
 const LOCAL_STORAGE_USER = "user";
-interface userStore {
-  user: { username: string } | null;
-  theme: themes;
-  toggleUserStore: () => void;
-  loginUser: () => void;
-  logoutUser: () => void;
-}
 
 const getThemeFromLocalStorage = () => {
   const theme =
@@ -19,7 +12,7 @@ const getThemeFromLocalStorage = () => {
 };
 
 export const useUserStore = create<userStore>((set, get) => ({
-  user: { username: "Felipe's dummy" },
+  user: { user: { username: "Felipe's dummy" } },
   theme: getThemeFromLocalStorage(),
   toggleUserStore: () => {
     set((state) => ({
@@ -28,9 +21,13 @@ export const useUserStore = create<userStore>((set, get) => ({
     document.documentElement.setAttribute("data-theme", get().theme);
     localStorage.setItem(LOCAL_STORAGE_THEME, get().theme);
   },
-  loginUser: () => console.log("login"),
+
   logoutUser: () => {
     set({ user: null });
     localStorage.removeItem(LOCAL_STORAGE_USER);
   },
 }));
+
+export const loginUser = (response: loggedUser) => {
+  useUserStore.setState({ user: response });
+};

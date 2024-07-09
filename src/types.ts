@@ -1,4 +1,4 @@
-interface ProductAttributes {
+export interface ProductAttributes {
   title: string;
   company: string;
   description: string;
@@ -61,4 +61,27 @@ export type cart = {
 export enum themes {
   light = "nord",
   dark = "night",
+}
+
+export interface userStore {
+  user: { user: { username: string } } | loggedUser | null;
+  theme: themes;
+  toggleUserStore: () => void;
+  logoutUser: () => void;
+}
+
+export interface loggedUser {
+  jwt: string;
+  user: User;
+}
+
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: string;
+  updatedAt: string;
 }

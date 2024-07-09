@@ -1,5 +1,34 @@
 import { FormInput, SubmitBtn } from "../components";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
+import { loginUser } from "../stores/userStore";
+import { customFetch } from "../utils";
+import { toast } from "react-toastify";
+
+interface CustomError extends Error {
+  response: {
+    data: {
+      error: {
+        message: string;
+      };
+    };
+  };
+}
+
+export const action = async ({ request }: { request: Request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  try {
+    const response = await customFetch.post("/auth/local", data);
+    console.log(response);
+    toast.success("Logged in successfully");
+    loginUser(response.data);
+    return redirect("/");
+  } catch (error) {
+    const errorMessage = (error as CustomError)?.response?.data?.error?.message;
+    toast.error(errorMessage);
+    return null;
+  }
+};
 
 const Login = () => {
   return (

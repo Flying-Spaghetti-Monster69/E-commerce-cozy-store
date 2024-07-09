@@ -38,3 +38,7 @@ export const loginUser = (response: loggedUserData) => {
   useUserStore.setState({ user });
   localStorage.setItem(LOCAL_STORAGE_USER, JSON.stringify(user));
 };
+
+export const getUserFromStore = () => {
+  return useUserStore.getState().user;
+};

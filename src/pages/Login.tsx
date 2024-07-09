@@ -3,16 +3,7 @@ import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import { loginUser } from "../stores/userStore";
 import { customFetch } from "../utils";
 import { toast } from "react-toastify";
-
-interface CustomError extends Error {
-  response: {
-    data: {
-      error: {
-        message: string;
-      };
-    };
-  };
-}
+import { CustomError } from "../types";
 
 export const action = async ({ request }: { request: Request }) => {
   const formData = await request.formData();

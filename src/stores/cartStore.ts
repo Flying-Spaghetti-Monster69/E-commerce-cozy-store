@@ -129,3 +129,13 @@ export const useCartStore = create<cartStore>((set, get) => ({
     );
   },
 }));
+
+export const getCartFromStore = () => {
+  const { cartItems, shipping, tax, cartTotal, numItemsInCart, orderTotal } =
+    useCartStore.getState();
+  return { cartItems, shipping, tax, cartTotal, numItemsInCart, orderTotal };
+};
+
+export const clearCartWithoutHook = () => {
+  useCartStore.getState().clearCart();
+};

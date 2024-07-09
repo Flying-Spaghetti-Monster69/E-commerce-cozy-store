@@ -88,3 +88,13 @@ export interface User {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface CustomError extends Error {
+  response: {
+    data: {
+      error: {
+        message: string;
+      };
+    };
+  };
+}

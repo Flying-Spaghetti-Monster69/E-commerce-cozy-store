@@ -41,7 +41,10 @@ export const action = async ({ request }: { request: Request }) => {
       (error as CustomError)?.response?.data?.error?.message ||
       "there was an error placing your order";
     toast.error(errorMessage);
-    if ((error as CustomError).response.status === 401) {
+    if (
+      (error as CustomError).response.status === 401 ||
+      (error as CustomError).response.status === 403
+    ) {
       return redirect("/login");
     }
     return null;

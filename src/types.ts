@@ -99,3 +99,28 @@ export interface CustomError extends Error {
     status?: number;
   };
 }
+
+export interface MetaOrders {
+  pagination: {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
+  };
+}
+
+export interface OrderDataAttributes {
+  address: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  name: string;
+  orderTotal: string;
+  cartItems: cartProduct[];
+  numItemsInCart: number;
+}
+
+export interface OrderData {
+  id: number;
+  attributes: OrderDataAttributes;
+}

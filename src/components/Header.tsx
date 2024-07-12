@@ -2,8 +2,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUserStore } from "../stores/userStore";
 import { useCartStore } from "../stores/cartStore";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Header = () => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { user, logoutUser } = useUserStore();
   const { clearCart } = useCartStore();
@@ -13,6 +15,7 @@ const Header = () => {
     clearCart();
     logoutUser();
     toast.success("successfully logged out");
+    queryClient.removeQueries();
   };
 
   return (

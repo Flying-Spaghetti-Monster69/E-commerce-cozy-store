@@ -6,50 +6,56 @@ import { clearCartWithoutHook, getCartFromStore } from "../stores/cartStore";
 import { customFetch, formatPrice } from "../utils";
 import { CustomError, loggedUser } from "../types";
 import { toast } from "react-toastify";
+import { QueryClient } from "@tanstack/react-query";
 
-export const action = async ({ request }: { request: Request }) => {
-  const formData = await request.formData();
-  const { name, address } = Object.fromEntries(formData);
-  const user = getUserFromStore() as loggedUser;
-  const { cartItems, orderTotal, numItemsInCart } = getCartFromStore();
+export const action =
+  (queryClient: QueryClient) =>
+  async ({ request }: { request: Request }) => {
+    const formData = await request.formData();
+    const { name, address } = Object.fromEntries(formData);
+    const user = getUserFromStore() as loggedUser;
+    const { cartItems, orderTotal, numItemsInCart } = getCartFromStore();
 
-  const info = {
-    name,
-    address,
-    chargeTotal: orderTotal,
-    orderTotal: formatPrice(orderTotal.toString()),
-    cartItems,
-    numItemsInCart,
-  };
+    const info = {
+      name,
+      address,
+      chargeTotal: orderTotal,
+      orderTotal: formatPrice(orderTotal.toString()),
+      cartItems,
+      numItemsInCart,
+    };
 
-  try {
-    const response = await customFetch.post(
-      "/orders",
-      { data: info },
-      {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
+    try {
+      const response = await customFetch.post(
+        "/orders",
+        { data: info },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      console.log(response);
+      queryClient.removeQueries({
+        predicate: (query) => query.queryKey[0] === "orders",
+      });
+      clearCartWithoutHook();
+      toast.success("order placed successfully");
+      return redirect("/orders");
+    } catch (error) {
+      const errorMessage =
+        (error as CustomError)?.response?.data?.error?.message ||
+        "there was an error placing your order";
+      toast.error(errorMessage);
+      if (
+        (error as CustomError).response.status === 401 ||
+        (error as CustomError).response.status === 403
+      ) {
+        return redirect("/login");
       }
-    );
-    console.log(response);
-    clearCartWithoutHook();
-    toast.success("order placed successfully");
-    return redirect("/orders");
-  } catch (error) {
-    const errorMessage =
-      (error as CustomError)?.response?.data?.error?.message ||
-      "there was an error placing your order";
-    toast.error(errorMessage);
-    if (
-      (error as CustomError).response.status === 401 ||
-      (error as CustomError).response.status === 403
-    ) {
-      return redirect("/login");
+      return null;
     }
-    return null;
-  }
-};
+  };
 
 const CheckoutForm = () => {
   return (

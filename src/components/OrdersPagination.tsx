@@ -53,11 +53,13 @@ const PaginationContainer = () => {
     //current page
     if (page !== 1 && page !== pageCount) {
       pageButtons.push(addPageButton({ pageNumber: page, activeClass: true }));
-      pageButtons.push(
-        <button className="join-item btn btn-md" key="dots">
-          ...
-        </button>
-      );
+      if (page !== pageCount - 1) {
+        pageButtons.push(
+          <button className="join-item btn btn-md" key="dots">
+            ...
+          </button>
+        );
+      }
     }
 
     pageButtons.push(

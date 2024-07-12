@@ -2,10 +2,16 @@ import { AssociatesSlider, FeaturedProducts, Hero } from "../components";
 import { customFetch } from "../utils";
 import { themes, type Product } from "../types";
 import { useUserStore } from "../stores/userStore";
+import { QueryClient } from "@tanstack/react-query";
 const url = "/products?featured=true";
 
-export const loader = async () => {
-  const response = await customFetch(url);
+const featuredProductsQuery = {
+  queryKey: ["featuredProducts"],
+  queryFn: () => customFetch(url),
+};
+
+export const loader = (queryClient: QueryClient) => async () => {
+  const response = await queryClient.ensureQueryData(featuredProductsQuery);
   const featuredProducts: Product[] = response.data.data;
   return { featuredProducts };
 };

@@ -1,6 +1,10 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useCartStore } from "./stores/cartStore";
 import { useEffect } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const TIME_UNTIL_STALE_MS = 1000 * 60 * 5;
 
 import {
   About,
@@ -30,6 +34,14 @@ import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { action as checkoutAction } from "./components/CheckoutForm";
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: TIME_UNTIL_STALE_MS,
+    },
+  },
+});
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,19 +52,19 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />,
         errorElement: <ErrorElement />,
-        loader: landingLoader,
+        loader: landingLoader(queryClient),
       },
       {
         path: "products",
         element: <Products />,
         errorElement: <ErrorElement />,
-        loader: productsLoader,
+        loader: productsLoader(queryClient),
       },
       {
         path: "products/:id",
         element: <SingleProduct />,
         errorElement: <ErrorElement />,
-        loader: SingleProductLoader,
+        loader: SingleProductLoader(queryClient),
       },
       {
         path: "cart",
@@ -66,12 +78,12 @@ const router = createBrowserRouter([
         path: "checkout",
         element: <Checkout />,
         loader: checkoutLoader,
-        action: checkoutAction,
+        action: checkoutAction(queryClient),
       },
       {
         path: "orders",
         element: <Orders />,
-        loader: ordersLoader,
+        loader: ordersLoader(queryClient),
       },
     ],
   },
@@ -96,9 +108,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    </>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 

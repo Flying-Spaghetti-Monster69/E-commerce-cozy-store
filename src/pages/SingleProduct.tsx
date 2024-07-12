@@ -6,12 +6,24 @@ import { cartProduct, Product } from "../types";
 import { useCartStore } from "../stores/cartStore";
 import { toast } from "react-toastify";
 import { GenerateAmountOptions } from "../components/GenerateAmountOptions";
+import { QueryClient } from "@tanstack/react-query";
 
-export const loader = async ({ params }: { params: { id: string } }) => {
-  const response = await customFetch(`/products/${params.id}`);
-  const product: Product = response.data.data;
-  return { product };
+const singleProductQuery = (id: string) => {
+  return {
+    queryKey: ["singleProduct", id],
+    queryFn: () => customFetch(`/products/${id}`),
+  };
 };
+
+export const loader =
+  (queryClient: QueryClient) =>
+  async ({ params }: { params: { id: string } }) => {
+    const response = await queryClient.ensureQueryData(
+      singleProductQuery(params.id)
+    );
+    const product: Product = response.data.data;
+    return { product };
+  };
 
 const SingleProduct = () => {
   const { product } = useLoaderData() as {
